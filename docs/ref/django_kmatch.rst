@@ -1,6 +1,6 @@
 .. _ref-django_kmatch:
 
-django_kmatch
+Code documentation
 ==================
 
 django_kmatch
