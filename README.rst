@@ -2,8 +2,8 @@
    :target: https://travis-ci.org/ambitioninc/django-kmatch
 
 
-django-kmatch
-===============
+django-kmatch - Django utilities for kmatch
+===========================================
 
 The django-kmatch app provides various utilities around the `Python kmatch library`_. 
 
@@ -11,7 +11,7 @@ The django-kmatch app provides various utilities around the `Python kmatch libra
 
 This app currently provides the following:
 
-1. A KField model field that allows the user to store a kmatch pattern and access it as a ``K`` object.
+1. A ``KField`` model field that allows the user to store a kmatch pattern and access it as a ``K`` object.
 
 
 Installation
