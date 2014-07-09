@@ -1,7 +1,8 @@
-from mock import patch
+import imp
 
 from django.test import TestCase
 from kmatch import K
+from mock import patch
 
 from .models import KModel, NullTrueModel
 
@@ -28,7 +29,7 @@ class RegexFieldTest(TestCase):
         # import error for south. Verify that add_introspection_rules isn't called
         with patch('__builtin__.__import__', side_effect=import_mock):
             from django_kmatch import fields
-            reload(fields)
+            imp.reload(fields)
 
         self.assertFalse(mock_add_introspection_rules.called)
 
