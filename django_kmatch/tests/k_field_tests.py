@@ -76,5 +76,5 @@ class RegexFieldTest(TestCase):
         """
         Tests accessing an invalid kmatch pattern.
         """
-        #with self.assertRaises(ValueError):
-        KModel.objects.create(k='he(lo')
+        with self.assertRaises(ValueError):
+            KModel.objects.create(k='he(lo')
