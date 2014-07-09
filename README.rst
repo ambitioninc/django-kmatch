@@ -5,9 +5,14 @@
 django-kmatch
 ===============
 
+The django-kmatch app provides various utilities around the `Python kmatch library`_. 
 
-I have failed to provide a good README.rst in my project, and you should shun
-me if I do any pull requests
+.. _Python kmatch library: https://github.com/ambitioninc/kmatch
+
+This app currently provides the following:
+
+    1. A KField model field that allows the user to store a kmatch pattern and access it as a ``K`` object.
+
 
 Installation
 ------------
