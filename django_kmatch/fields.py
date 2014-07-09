@@ -32,5 +32,5 @@ class KField(JSONField):
 try:
     from south.modelsinspector import add_introspection_rules
     add_introspection_rules([], ['^django_kmatch\.fields\.KField'])
-except ImportError:
-    pass
+except ImportError:  # pragma: no cover
+    pass  # pragma: no cover
