@@ -6,6 +6,6 @@ The django-kmatch app provides various utilities around the `Python kmatch libra
 
 This app currently provides the following:
 
-    1. A KField model field that allows the user to store a kmatch pattern and access it as a ``K`` object.
+1. A KField model field that allows the user to store a kmatch pattern and access it as a ``K`` object.
 
 Installation and overviews of the utilities are provided in the following.
