@@ -7,8 +7,5 @@ django_kmatch
 ------------------
 
 .. automodule:: django_kmatch
-.. autoclass:: django_kmatch.django_kmatch
+.. autoclass:: django_kmatch.fields.KField
     :members:
-    :undoc-members:
-
-    .. automethod:: __init__
