@@ -4,7 +4,7 @@ from kmatch import K
 from .models import KModel, NullTrueModel
 
 
-class RegexFieldTest(TestCase):
+class KFieldTest(TestCase):
     """
     Tests storing and calling functions/classes that are stored in test models.
     """

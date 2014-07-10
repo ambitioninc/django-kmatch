@@ -9,4 +9,4 @@ Table of Contents
    k_field
    ref/django_kmatch
    contributing
-   release_notes/index
+   release_notes
