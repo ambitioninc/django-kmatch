@@ -41,6 +41,7 @@ setup(
     install_requires=[
         'jsonfield>=0.9.20',
         'django>=1.6',
+        'kmatch>=0.1.1',
     ],
     tests_require=[
         'psycopg2',

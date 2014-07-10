@@ -6,6 +6,7 @@ Table of Contents
 
    index
    installation
+   k_field
    ref/django_kmatch
    contributing
-   release_notes/index
+   release_notes
