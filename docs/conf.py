@@ -135,6 +135,11 @@ texinfo_documents = [
 
 # -- Django configuration -------------------------------------------------
 import sys
+import django
+
 sys.path.insert(0, os.path.abspath('..'))
 from settings import configure_settings
 configure_settings()
+
+if django.VERSION[1] >= 7:
+    django.setup()

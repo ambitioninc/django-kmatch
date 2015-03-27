@@ -2,8 +2,10 @@
 branch = True
 omit =
     django_kmatch/migrations/*
+    django_kmatch/south_migrations/*
     django_kmatch/tests/*
     django_kmatch/version.py
+    django_kmatch/apps.py
 source = django_kmatch
 [report]
 exclude_lines =
