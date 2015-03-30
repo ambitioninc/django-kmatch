@@ -25,10 +25,10 @@ To install the latest code directly from source, type::
     pip install git+git://github.com/ambitioninc/django-kmatch.git
 
 Documentation
-=============
+-------------
 
 Full documentation is available at http://django-kmatch.readthedocs.org
 
 License
-=======
+-------
 MIT License (see LICENSE)

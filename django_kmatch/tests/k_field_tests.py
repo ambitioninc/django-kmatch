@@ -13,9 +13,9 @@ class KFieldTest(TestCase):
         Tests that null k patterns can be saved with null=True.
         """
         test_obj = NullTrueModel.objects.create(k=None)
-        self.assertEquals(test_obj.k, None)
+        self.assertEqual(test_obj.k, None)
         test_obj = NullTrueModel.objects.get(id=test_obj.id)
-        self.assertEquals(test_obj.k, None)
+        self.assertEqual(test_obj.k, None)
 
     def test_save_list(self):
         """
