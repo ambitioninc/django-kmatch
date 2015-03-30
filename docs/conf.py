@@ -135,6 +135,7 @@ texinfo_documents = [
 
 # -- Django configuration -------------------------------------------------
 import sys
+
 sys.path.insert(0, os.path.abspath('..'))
 from settings import configure_settings
 configure_settings()
