@@ -27,10 +27,3 @@ class KField(JSONField):
         if isinstance(value, K):
             value = value.pattern
         return super(KField, self).get_db_prep_value(value, connection, prepared=False)
-
-
-try:
-    from south.modelsinspector import add_introspection_rules
-    add_introspection_rules([], ['^django_kmatch\.fields\.KField'])
-except ImportError:  # pragma: no cover
-    pass  # pragma: no cover
