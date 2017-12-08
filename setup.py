@@ -29,8 +29,6 @@ setup(
     packages=find_packages(),
     classifiers=[
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Intended Audience :: Developers',
@@ -41,7 +39,7 @@ setup(
     license='MIT',
     install_requires=[
         'jsonfield>=0.9.20',
-        'Django>=1.9',
+        'Django>=1.11',
         'kmatch>=0.1.7'
     ],
     tests_require=[
