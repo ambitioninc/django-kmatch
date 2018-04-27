@@ -13,20 +13,15 @@ def configure_settings():
         if test_db is None:
             db_config = {
                 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-                'NAME': 'ambition_dev',
-                'USER': 'ambition_dev',
-                'PASSWORD': 'ambition_dev',
-                'HOST': 'localhost'
+                'NAME': 'ambition',
+                'USER': 'ambition',
+                'PASSWORD': 'ambition',
+                'HOST': 'db'
             }
         elif test_db == 'postgres':
             db_config = {
                 'ENGINE': 'django.db.backends.postgresql_psycopg2',
                 'USER': 'postgres',
-                'NAME': 'django_kmatch',
-            }
-        elif test_db == 'sqlite':
-            db_config = {
-                'ENGINE': 'django.db.backends.sqlite3',
                 'NAME': 'django_kmatch',
             }
         else:
