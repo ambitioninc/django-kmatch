@@ -39,8 +39,8 @@ setup(
     license='MIT',
     install_requires=[
         'jsonfield==0.9.23',
-        'Django>=1.11',
-        'kmatch>=0.1.7'
+        'Django>=2.0',
+        'kmatch>=0.3.0'
     ],
     tests_require=[
         'psycopg2',
