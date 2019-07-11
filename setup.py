@@ -29,10 +29,8 @@ setup(
     packages=find_packages(),
     classifiers=[
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
@@ -41,8 +39,8 @@ setup(
     license='MIT',
     install_requires=[
         'jsonfield==0.9.23',
-        'Django>=1.11',
-        'kmatch>=0.1.7'
+        'Django>=2.0',
+        'kmatch>=0.3.0'
     ],
     tests_require=[
         'psycopg2',
