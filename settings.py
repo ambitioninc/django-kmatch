@@ -44,4 +44,6 @@ def configure_settings():
             ),
             ROOT_URLCONF='django_kmatch.urls',
             DEBUG=False,
+            SECRET_KEY='*',
+            DEFAULT_AUTO_FIELD='django.db.models.AutoField',
         )
