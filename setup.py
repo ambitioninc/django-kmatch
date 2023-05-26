@@ -41,7 +41,7 @@ setup(
     install_requires=[
         'Django>=3.2',
         'jsonfield==0.9.23',
--        'kmatch>=0.3.0'
+        'kmatch>=0.3.0',
     ],
     tests_require=[
         'psycopg2',

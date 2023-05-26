@@ -30,8 +30,8 @@ class KField(JSONField):
             value = value.pattern
         return super(KField, self).get_db_prep_value(value, connection, prepared=False)
 
-# This was lifted from jsonfield/subclassing.py
 
+# This was lifted from jsonfield/subclassing.py
 class Creator(object):
     """
     A placeholder class that provides a way to set the attribute on the model.
