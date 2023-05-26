@@ -25,4 +25,18 @@ class Migration(migrations.Migration):
                 ('k', django_kmatch.fields.KField(null=True)),
             ],
         ),
+        migrations.CreateModel(
+            name='KModel2',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('k', django_kmatch.fields.KField2()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='NullTrueModel2',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('k', django_kmatch.fields.KField2(null=True)),
+            ],
+        ),
     ]
