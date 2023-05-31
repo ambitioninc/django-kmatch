@@ -30,7 +30,11 @@ def configure_settings():
         settings.configure(
             TEST_RUNNER='django_nose.NoseTestSuiteRunner',
             NOSE_ARGS=['--nocapture', '--nologcapture', '--verbosity=1'],
-            MIDDLEWARE_CLASSES=(),
+            MIDDLEWARE=(
+                'django.contrib.auth.middleware.AuthenticationMiddleware',
+                'django.contrib.messages.middleware.MessageMiddleware',
+                'django.contrib.sessions.middleware.SessionMiddleware'
+            ),
             DATABASES={
                 'default': db_config,
             },
@@ -38,6 +42,7 @@ def configure_settings():
                 'django.contrib.auth',
                 'django.contrib.contenttypes',
                 'django.contrib.sessions',
+                'django.contrib.messages',
                 'django.contrib.admin',
                 'django_kmatch',
                 'django_kmatch.tests',
@@ -46,4 +51,15 @@ def configure_settings():
             DEBUG=False,
             SECRET_KEY='*',
             DEFAULT_AUTO_FIELD='django.db.models.AutoField',
+            TEMPLATES=[{
+                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'APP_DIRS': True,
+                'OPTIONS': {
+                    'context_processors': [
+                        'django.contrib.auth.context_processors.auth',
+                        'django.contrib.messages.context_processors.messages',
+                        'django.template.context_processors.request',
+                    ]
+                }
+            }],
         )
