@@ -1,3 +1,5 @@
+import json
+
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import JSONField as DjangoJSONField
 from jsonfield import JSONField
@@ -28,6 +30,7 @@ class KField(JSONField):
         """
         if isinstance(value, K):
             value = value.pattern
+
         return super(KField, self).get_db_prep_value(value, connection, prepared=False)
 
 
@@ -80,6 +83,10 @@ class KField2(DjangoJSONField):
         # print('hello from KField2.get_db_prep_value!')
         if isinstance(value, K):
             value = value.pattern
+
+        if not self.null and value is None:
+            value = json.dumps(value)
+
         return super(KField2, self).get_db_prep_value(value, connection, prepared=False)
 
     def pre_init(self, value, obj):
@@ -89,7 +96,13 @@ class KField2(DjangoJSONField):
         conversions in the pre_init method.
         """
         # print('hello from KField2.pre_init!')
-        return K(value) if not isinstance(value, K) and value is not None else value
+        if not isinstance(value, K) and value is not None:
+            if isinstance(value, str):
+                return json.loads(value)
+            else:
+                return K(value)
+
+        return value
 
     def contribute_to_class(self, cls, name, private_only=False):
         # print('hello from KField2.contribute_to_class!')
