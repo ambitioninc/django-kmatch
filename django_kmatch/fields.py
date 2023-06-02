@@ -67,3 +67,8 @@ class KField(DjangoJSONField):
         # print('hello from KField2.contribute_to_class!')
         super().contribute_to_class(cls, name)
         setattr(cls, name, Creator(self))
+
+
+# Maintain second copy of KField since we migrated to KField2 in the previous version.
+class KField2(KField):
+    pass
