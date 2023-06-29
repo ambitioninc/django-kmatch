@@ -13,7 +13,6 @@ class KField(CastOnAssignFieldMixin, DjangoJSONField):
     description = 'A kmatch pattern'
 
     def __init__(self, *args, **kwargs):
-        # print('hello from KField2.__init__!')
         self.dump_kwargs = kwargs.pop('dump_kwargs', {
             'cls': DjangoJSONEncoder,
             'separators': (',', ':')
