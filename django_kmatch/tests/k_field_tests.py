@@ -1,7 +1,7 @@
 from django.test import TestCase
 from kmatch import K
 
-from .models import KModel, NullTrueModel, KModel2, NullTrueModel2
+from .models import KModel, NullTrueModel
 
 
 class KFieldTest(TestCase):
