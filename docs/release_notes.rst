@@ -1,6 +1,11 @@
 Release Notes
 =============
 
+v2.0.0
+------
+* Python 3.8,3.9
+* Django 3.2-4.2 only
+
 v1.2.0
 ------
 * Python 3.7
