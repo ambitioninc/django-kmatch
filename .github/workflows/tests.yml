@@ -53,7 +53,7 @@ jobs:
         run: |
           python --version
           pip install --upgrade pip wheel setuptools
-          python setup.py install
+          pip install -r requirements.txt
           pip install -r requirements/requirements-testing.txt
           pip install "${{ matrix.django }}"
           pip freeze
@@ -70,9 +70,7 @@ jobs:
             }
         run: |
           python manage.py check
-          python run_tests.py
-          # coverage run manage.py test django_kmatch
-          # coverage report --fail-under=90
-      #     continue-on-error: ${{ matrix.experimental }}
+          coverage run manage.py test django_kmatch
+          coverage report --fail-under=90
       - name: Check style
         run: flake8 django_kmatch
