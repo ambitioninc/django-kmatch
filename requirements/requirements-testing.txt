@@ -2,3 +2,5 @@ coverage
 django-nose
 flake8
 psycopg2
+numpy<1.25 ; python_version < '3.9'
+numpy>=1.25 ; python_version >= '3.9'
