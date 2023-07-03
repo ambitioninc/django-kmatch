@@ -1,10 +1,11 @@
 Release Notes
 =============
 
-v2.0.0
+v2.0.1
 ------
 * Python 3.8,3.9
 * Django 3.2-4.2 only
+* No longer depends on legacy jsonfield package
 
 v1.2.0
 ------
