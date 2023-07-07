@@ -39,9 +39,12 @@ class KField(CastOnAssignFieldMixin, DjangoJSONField):
         """
         Used to obtain a K object for a provided pattern.
         """
-        if not isinstance(value, K) and value is not None:
-            if isinstance(value, str):
-                return json.loads(value)
-            else:
-                return K(value)
-        return value
+        if isinstance(value, K) or value is None:
+            return value
+
+        if isinstance(value, str):
+            # We really should not ever get here - the only way would be if the json
+            # was invalid, in which case we'll end up with a value error anyway.
+            return K(json.loads(value))
+        else:
+            return K(value)
