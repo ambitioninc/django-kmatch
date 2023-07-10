@@ -31,17 +31,20 @@ class KField(CastOnAssignFieldMixin, DjangoJSONField):
             value = value.pattern
 
         if not self.null and value is None:
-            value = json.dumps(value)
+            return json.dumps(value)
 
-        return super(KField, self).get_db_prep_value(value, connection, prepared=False)
+        return super().get_db_prep_value(value, connection, prepared=False)
 
     def to_python(self, value):
         """
         Used to obtain a K object for a provided pattern.
         """
+
+        value = super().to_python(value)
+
         if not isinstance(value, K) and value is not None:
             if isinstance(value, str):
-                return json.loads(value)
+                return K(json.loads(value))
             else:
                 return K(value)
         return value
