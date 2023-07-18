@@ -1,5 +1,4 @@
 coverage
 django-nose
 flake8
-mock
 psycopg2
