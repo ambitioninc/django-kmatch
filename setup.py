@@ -17,6 +17,13 @@ def get_version():
         raise RuntimeError('Unable to find version string in {0}.'.format(VERSION_FILE))
 
 
+def get_lines(file_path):
+    return open(file_path, 'r').read().split('\n')
+
+
+install_requires = get_lines('requirements/requirements.txt')
+tests_require = get_lines('requirements/requirements-testing.txt')
+
 setup(
     name='django-kmatch',
     version=get_version(),
@@ -29,25 +36,17 @@ setup(
     packages=find_packages(),
     classifiers=[
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Framework :: Django',
     ],
     license='MIT',
-    install_requires=[
-        'jsonfield==0.9.23',
-        'Django>=2.0',
-        'kmatch>=0.3.0'
-    ],
-    tests_require=[
-        'psycopg2',
-        'django-nose>=1.4',
-        'mock>=1.0.1',
-        'coverage>=3.7.1',
-    ],
+    install_requires=install_requires,
+    tests_require=tests_require,
     test_suite='run_tests.run_tests',
     include_package_data=True,
     zip_safe=False,

@@ -1,0 +1,3 @@
+Django>=3.2
+ambition-utils>=3.1.6
+kmatch>=0.3.0
