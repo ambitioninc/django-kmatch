@@ -23,6 +23,10 @@ class KField(CastOnAssignFieldMixin, DjangoJSONField):
 
         super().__init__(*args, **kwargs)
 
+
+    def get_db_prep_save(self, value, connection):
+        return self.get_db_prep_value(value, connection, prepared=False)
+
     def get_db_prep_value(self, value, connection, prepared=False):
         """
         Converts a K object to a pattern.
