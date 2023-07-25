@@ -23,12 +23,22 @@ class KField(CastOnAssignFieldMixin, DjangoJSONField):
 
         super().__init__(*args, **kwargs)
 
+
+    def get_db_prep_save(self, value, connection):
+        return self.get_db_prep_value(value, connection, prepared=False)
+
     def get_db_prep_value(self, value, connection, prepared=False):
         """
         Converts a K object to a pattern.
         """
+        # If we have a K object, what we save into the database is the pattern.
         if isinstance(value, K):
             value = value.pattern
+
+        # If the field IS NULLABLE and we pass in a None, then we return a None which will get stored
+        # as a real database NULL value.
+        if self.null and value is None:
+            return None
 
         if not self.null and value is None:
             return json.dumps(value)
