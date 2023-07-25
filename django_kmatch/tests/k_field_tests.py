@@ -11,7 +11,13 @@ from .models import KModel, NullTrueModel
 
 
 def get_field_value(model='kmodel', field='k'):
-    sqlcmd = f'select {field} from tests_{model} order by id desc'
+    # The cast to ::jsonb is on here partly as a reminder that the legacy jsonfield
+    # used postgresql `json` columns, not `jsonb`. Django 3+ does not support json columns,
+    # but to the extent that you can still query them, there is a difference in behavior:
+    # json columns are still run through json.loads, even with raw sql queries, whereas
+    # Django stopped doing that for jsonb columns starting in v3.1.1 .
+    # (There is a test branch for testing the legacy version to ensure compatibility.)
+    sqlcmd = f'select {field}::jsonb from tests_{model} order by id desc'
     with connection.cursor() as cursor:
         cursor.execute(sqlcmd)
         row = cursor.fetchone()

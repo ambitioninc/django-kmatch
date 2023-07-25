@@ -7,7 +7,15 @@ class KModel(models.Model):
     """
     A model for testing saving and compiling of K objects.
     """
-    k = KField(null=False)
+    # Very oddly, the legacy jsonfield works differently whether default=None is specified or not.
+    # With default=None, you can create an object with a k field and it gets a json-null value.
+    # Without the default=None (and null=False is specified or defaulted), something happens and
+    # the K object itself gets an empty value and complains that it is not a valid pattern.
+
+    # This is neither here nor there I guess, as we have moved on from the legacy jsonfield, and
+    # this specific behavior does not seem like something useful that needs to be duplicated. Going forward,
+    # essentially the default=None is implied.
+    k = KField(default=None)
 
 
 class NullTrueModel(models.Model):

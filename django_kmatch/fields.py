@@ -40,8 +40,8 @@ class KField(CastOnAssignFieldMixin, DjangoJSONField):
 
         # If the field IS NULLABLE and we pass in a None, then we return a None which will get stored
         # as a real database NULL value. Note that we are directly returning the value, NOT passing it
-        # through super().get_db_prep_value, which would have the effect of setting the json null value,
-        # I'm pretty sure.
+        # through super().get_db_prep_value, which SPECIFICALLY IN DJANGO 4.2+
+        # would have the effect of setting the json null value.
         if self.null and value is None:
             return None
 
