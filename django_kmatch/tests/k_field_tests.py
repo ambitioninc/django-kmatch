@@ -11,7 +11,7 @@ from .models import KModel, NullTrueModel
 
 
 def get_field_value(model='kmodel', field='k'):
-    sqlcmd = f'select {field} from tests_{model} order by id desc'
+    sqlcmd = f'select {field}::jsonb from tests_{model} order by id desc'
     with connection.cursor() as cursor:
         cursor.execute(sqlcmd)
         row = cursor.fetchone()
@@ -130,15 +130,16 @@ class KFieldTest(TestCase):
         This actually saves a "json null" i.e. the string "null" into the column.
         The column itself is not nullable at the database level, but accepts a None value all the same.
         """
-        try:
-            # Create a row in a not-nullable field with no value
-            test_obj = KModel.objects.create()
-        except IntegrityError as ie:
-            print("Integrity error: ", ie)
-        except Exception as e:
-            print("Exception! (but not IntegrityError): ", e)
-            import traceback
-            traceback.print_stack()
+        test_obj = KModel.objects.create()
+        # try:
+        #     # Create a row in a not-nullable field with no value
+        #     test_obj = KModel.objects.create()
+        # except IntegrityError as ie:
+        #     print("Integrity error: ", ie)
+        # except Exception as e:
+        #     print("Exception! (but not IntegrityError): ", e)
+        #     import traceback
+        #     traceback.print_stack()
 
         dbval = get_field_value('kmodel', 'k')
         self.assertEqual(dbval, 'null')

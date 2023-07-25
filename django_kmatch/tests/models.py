@@ -7,7 +7,7 @@ class KModel(models.Model):
     """
     A model for testing saving and compiling of K objects.
     """
-    k = KField(null=False)
+    k = KField()
 
 
 class NullTrueModel(models.Model):
