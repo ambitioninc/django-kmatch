@@ -1,12 +1,14 @@
 import json
-from django.db import IntegrityError
+
 from django.test import TestCase
-from django.db.utils import IntegrityError
-from django.db import connection, models
+from django.db import connection, IntegrityError
+# from django.db.models import Value, JSONField
+
+# from django_kmatch import KField
 from kmatch import K
-from django.db.models import Value, JSONField
-from django_kmatch import KField
+
 from .models import KModel, NullTrueModel
+
 
 def get_field_value(model='kmodel', field='k'):
     sqlcmd = f'select {field} from tests_{model} order by id desc'
@@ -14,6 +16,7 @@ def get_field_value(model='kmodel', field='k'):
         cursor.execute(sqlcmd)
         row = cursor.fetchone()
         return row[0]
+
 
 class KFieldTest(TestCase):
     """
@@ -46,7 +49,6 @@ class KFieldTest(TestCase):
         # When reading the value directly via sql, we should see a string. It should load into a list.
         self.assertEqual(type(dbval), str)
         self.assertEqual(type(json.loads(dbval)), list)
-
 
     def test_save_k(self):
         """
@@ -144,7 +146,6 @@ class KFieldTest(TestCase):
 
         test_obj = KModel.objects.get(id=test_obj.id)
         self.assertIsNone(test_obj.k)
-
 
     def test_invalid_pattern(self):
         """

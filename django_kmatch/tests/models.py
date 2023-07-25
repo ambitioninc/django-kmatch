@@ -17,10 +17,10 @@ class NullTrueModel(models.Model):
     k = KField(null=True)
     knone = KField(null=True, default=None)
 
+
 class KDefModel(models.Model):
     """
     A model for testing saving and compiling of K objects.
     """
     kdict = KField(null=False, default=dict)
     klist = KField(null=False, default=list)
-

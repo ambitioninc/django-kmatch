@@ -23,7 +23,10 @@ class KField(CastOnAssignFieldMixin, DjangoJSONField):
 
         super().__init__(*args, **kwargs)
 
-
+    # This method is overridden in JSONField in Django 4.2 but not in 4.1. In 4.2 it completely bypasses
+    # get_db_prep_value() if the value is None, preventing the possibility of storing a "json null"
+    # in a not-null field. So we are forcing it here to be its original (pre-4.2) self so we can decide
+    # for ourselves how to handle a None.
     def get_db_prep_save(self, value, connection):
         return self.get_db_prep_value(value, connection, prepared=False)
 
@@ -36,7 +39,9 @@ class KField(CastOnAssignFieldMixin, DjangoJSONField):
             value = value.pattern
 
         # If the field IS NULLABLE and we pass in a None, then we return a None which will get stored
-        # as a real database NULL value.
+        # as a real database NULL value. Note that we are directly returning the value, NOT passing it
+        # through super().get_db_prep_value, which would have the effect of setting the json null value,
+        # I'm pretty sure.
         if self.null and value is None:
             return None
 
