@@ -23,13 +23,31 @@ class KField(CastOnAssignFieldMixin, DjangoJSONField):
 
         super().__init__(*args, **kwargs)
 
+    # This method is overridden in JSONField in Django 4.2 but not in 4.1. In 4.2 it completely bypasses
+    # get_db_prep_value() if the value is None, preventing the possibility of storing a "json null"
+    # in a not-null field. So we are forcing it here to be its original (pre-4.2) self so we can decide
+    # for ourselves how to handle a None.
+    def get_db_prep_save(self, value, connection):
+        return self.get_db_prep_value(value, connection, prepared=False)
+
     def get_db_prep_value(self, value, connection, prepared=False):
         """
         Converts a K object to a pattern.
         """
+        # If we have a K object, what we save into the database is the pattern.
         if isinstance(value, K):
             value = value.pattern
 
+        # If the field IS NULLABLE and we pass in a None, then we return a None which will get stored
+        # as a real database NULL value. Note that we are directly returning the value, NOT passing it
+        # through super().get_db_prep_value, which SPECIFICALLY IN DJANGO 4.2+
+        # would have the effect of setting the json null value.
+        if self.null and value is None:
+            return None
+
+        # If we have a None value in a non-nullable field, we save the json equivalent of null, i.e. "null"
+        # But once again, we do NOT want to pass it through the super().db_prep_value or it will try to
+        # double-wrap, literally '"null"'
         if not self.null and value is None:
             return json.dumps(value)
 

@@ -1,6 +1,10 @@
 Release Notes
 =============
 
+v2.0.4
+------
+* Corrected a discrepancy in how Django 4.2 handles null values in JSONField
+
 v2.0.3
 ------
 * Python 3.8,3.9

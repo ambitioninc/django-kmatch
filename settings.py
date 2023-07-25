@@ -10,20 +10,21 @@ def configure_settings():
     """
     if not settings.configured:
         # Determine the database settings depending on if a test_db var is set in CI mode or not
-        test_db = os.environ.get('DB', None)
-        if test_db is None:
+        test_db = os.environ.get('DB', 'postgres')
+        dbhost = os.environ.get('DBHOST', 'db')
+        if test_db == 'ambition':
             db_config = {
                 'ENGINE': 'django.db.backends.postgresql',
                 'NAME': 'ambition',
                 'USER': 'ambition',
-                'PASSWORD': 'ambition',
-                'HOST': 'db'
+                'HOST': dbhost,
             }
         elif test_db == 'postgres':
             db_config = {
                 'ENGINE': 'django.db.backends.postgresql',
                 'USER': 'postgres',
                 'NAME': 'django_kmatch',
+                'HOST': dbhost,
             }
         else:
             raise RuntimeError('Unsupported test DB {0}'.format(test_db))
