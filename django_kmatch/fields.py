@@ -45,6 +45,9 @@ class KField(CastOnAssignFieldMixin, DjangoJSONField):
         if self.null and value is None:
             return None
 
+        # If we have a None value in a non-nullable field, we save the json equivalent of null, i.e. "null"
+        # But once again, we do NOT want to pass it through the super().db_prep_value or it will try to
+        # double-wrap, literally '"null"'
         if not self.null and value is None:
             return json.dumps(value)
 
