@@ -1,6 +1,11 @@
 Release Notes
 =============
 
+v2.0.4
+------
+* Read the Docs config file v2
+* Github actions for testing psycopg3
+
 v2.0.3
 ------
 * Python 3.8,3.9
